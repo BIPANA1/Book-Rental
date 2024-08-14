@@ -1,0 +1,37 @@
+@extends('admin.layouts.main')
+@section('content')
+
+<style>
+    .table{
+       margin: auto;
+       padding: 16px 36px;
+    }
+</style>
+
+<h2>User Management</h2>
+<a href="{{route('users.create')}}" class="btn btn-primary m-4"> Create </a>
+
+<table class="table">
+    <tr>
+       <th>User Name</th>
+       <th>Email</th>
+       <th>Role</th>
+       <th>Action</th>
+    </tr>
+    @foreach ($users as  $user)
+    <tr>
+
+        <td>{{$user->name}}</td>
+        <td>{{$user->email}}</td>
+        <td>{{$user->roles}}</td>
+        <td>
+            <a href="{{route('users.edit',['user'=>$user->id])}}" class="btn btn-info" >Edit</a>
+            <a href="{{route('users.destroy',['user'=>$user->id])}}" class="btn btn-danger" >Delete</a>
+
+        </td>
+    </tr>
+
+    @endforeach
+    </table>
+
+@endsection
