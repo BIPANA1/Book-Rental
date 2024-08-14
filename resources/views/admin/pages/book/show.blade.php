@@ -25,27 +25,20 @@
        <th>Photo</th>
        <th>Stock count</th>
        <th>Publish date</th>
-       <th>Action</th>
     </tr>
-    {{-- @foreach ($roles as $key => $role ) --}}
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{$book->name}}</td>
+        <td>{{$book->no_of_pages}}</td>
+        <td>{{$book->isbn}}</td>
+        <td>{{$book->rating}}</td>
         <td>
-            <a href="" class="btn btn-success" >View</a>
-            <a href="" class="btn btn-info" >Edit</a>
-            <form id="delete-form" method="POST" action="">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <div class="form-group">
-                  <input type="submit" class="btn btn-danger" value="Delete">
-                </div>
-              </form>
+            <img src="{{asset($book->photo)}}" alt="image" height="150" width="150">
         </td>
+        <td>
+            {{$book->stock_count}}
+        </td>
+        <td>{{$book->published_date}}</td>
     </tr>
-    {{-- @endforeach --}}
     </table>
 
 @endsection

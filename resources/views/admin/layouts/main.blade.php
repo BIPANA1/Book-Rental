@@ -559,7 +559,7 @@ table tbody tr {
    <input type="checkbox" id="menu-toggle">
     <div class="sidebar">
         <div class="side-header">
-            <h3>L<span>ogo</span></h3>
+            <h3>Book<span>Rental</span></h3>
         </div>
 
         <div class="side-content">

@@ -9,9 +9,12 @@
 </style>
 
 <h2>User Management</h2>
-<a href="{{route('users.create')}}" class="btn btn-primary m-4"> Create </a>
+<div>
+    <a href="{{route('users.create')}}" class="btn btn-primary m-4"> Create </a>
 
-<table class="table">
+</div>
+
+<table class="table m-4">
     <tr>
        <th>User Name</th>
        <th>Email</th>

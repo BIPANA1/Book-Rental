@@ -10,7 +10,7 @@
 
 <h2> Roles Management</h2>
 
-<div>
+<div class="m-4">
     <a href="{{route('roles.create')}}" class="btn btn-primary"> Create role</a>
 </div>
 
@@ -20,7 +20,7 @@
 </div>
 @endif
 
-<table class="table">
+<table class="table m-4">
     <tr>
        <th>No.</th>
        <th>Name</th>
@@ -31,8 +31,8 @@
         <td>{{$role->id}}</td>
         <td>{{$role->name}}</td>
         <td>
+            <div style="display: flex; gap: 5px; margin-top:8px;">
             <a href="{{route('roles.edit',['role'=>$role->id])}}" class="btn btn-info" >Edit</a>
-
             <form id="delete-form" method="POST" action="{{route('roles.destroy',['role'=>$role->id])}}">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
@@ -40,6 +40,7 @@
                   <input type="submit" class="btn btn-danger" value="Delete">
                 </div>
               </form>
+            </div>
         </td>
     </tr>
     @endforeach

@@ -10,7 +10,7 @@
 
 <h2> Books Management</h2>
 
-<div>
+<div class="m-4 mt-4">
     <a href="{{route('book.create')}}" class="btn btn-primary"> Create Book</a>
 </div>
 
@@ -20,7 +20,7 @@
 </div>
 @endif
 
-<table class="table">
+<table class="table m-4">
     <tr>
        <th>Name</th>
        <th>Photo</th>
@@ -28,25 +28,28 @@
        <th>Publish date</th>
        <th>Action</th>
     </tr>
-    {{-- @foreach ($roles as $key => $role ) --}}
+    @foreach ($book as $b )
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{$b->name}}</td>
         <td>
-            <a href="" class="btn btn-success" >View</a>
-            <a href="" class="btn btn-info" >Edit</a>
-            <form id="delete-form" method="POST" action="">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <div class="form-group">
-                  <input type="submit" class="btn btn-danger" value="Delete">
-                </div>
-              </form>
+            <img src="{{asset($b->photo)}}" alt="image" height="150" width="150">
         </td>
+        <td>{{$b->stock_count}}</td>
+        <td>{{$b->published_date}}</td>
+        <td>
+            <div style="display: flex; gap: 5px; margin-top:8px;">
+                <a href="{{ route('book.show', ['id' => $b->id]) }}" class="btn btn-success">View</a>
+                <a href="{{ route('book.edit', ['id' => $b->id]) }}" class="btn btn-info">Edit</a>
+                <form id="delete-form" method="POST" action="{{route('book.destroy',['id' =>$b->id])}}">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </div>
+        </td>
+
     </tr>
-    {{-- @endforeach --}}
+    @endforeach
     </table>
 
 @endsection
