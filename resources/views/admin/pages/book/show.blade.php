@@ -23,6 +23,7 @@
        <th>isbn</th>
        <th>Rating</th>
        <th>Photo</th>
+       <th>Genre</th>
        <th>Stock count</th>
        <th>Publish date</th>
     </tr>
@@ -33,6 +34,9 @@
         <td>{{$book->rating}}</td>
         <td>
             <img src="{{asset($book->photo)}}" alt="image" height="150" width="150">
+        </td>
+        <td>
+            {{$book->category['name']}}
         </td>
         <td>
             {{$book->stock_count}}

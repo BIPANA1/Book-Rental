@@ -29,7 +29,7 @@
 <form action="{{ route('roles.update',['role' =>$role->id]) }}" method="post">
     @csrf
     @method('PATCH')
-    <div class="row mb-3">
+    <div class="row m-4 mt-4 mb-3">
         <div class="col-md-8">
             <div class="form-group">
                 <strong>Name:</strong>
@@ -37,18 +37,20 @@
                     placeholder="Name">
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="row m-2 mb-3">
             <div class="col-md-8">
-            <div class="form-group">
-                <strong>Permission:</strong>
-                <br />
-                @foreach ($permission as $value)
-                    <label>
-                        <input type="checkbox" @if (in_array($value->id, $rolePermissions)) checked @endif name="permissions"
-                            value="{{ $value->id }}" class="name">
-                        {{ $value->name }}</label>
+                <div class="form-group">
+                    <strong>Permissions:</strong>
                     <br />
-                @endforeach
+                    @foreach ($permission as $value)
+                        <label>
+                            <input type="checkbox" name="permissions[]" value="{{ $value->id }}" class="name"
+                                @if (in_array($value->id, $rolePermissions)) checked @endif>
+                            {{ $value->name }}
+                        </label>
+                        <br />
+                    @endforeach
+                </div>
             </div>
         </div>
         <div class="col-xs-12 mb-3 text-center">

@@ -9,6 +9,10 @@
   }
 </style>
 
+<div class="float-end">
+    <a class="btn btn-primary" href="{{ route('book.index') }}"> Back</a>
+</div>
+
 <div class="row justify-content-center">
     <div class="col-md-12">
         <h4 class="text-center"></h4>
@@ -130,6 +134,18 @@
                                     </span>
                                 @enderror
                             </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="text"
+                            class="col-md-4 col-form-label text-md-end">{{ __('Author') }}</label>
+                        <div class="col-md-8">
+                            <select name="author_id" id="author_id" class="w3-input form-control">
+                                @foreach ($author as $key=> $a)
+                                    <option value="{{ $key }}">{{ $a }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row mb-3">

@@ -13,6 +13,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
+
         $author = Author::all();
         return view('admin.pages.author.index',compact('author'));
     }
@@ -22,7 +23,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.author.create');
+        $author = Author::all();
+        return view('admin.pages.author.create', compact('author'));
     }
 
     /**

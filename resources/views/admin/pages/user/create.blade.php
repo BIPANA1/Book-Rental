@@ -1,6 +1,10 @@
 @extends('admin.layouts.main')
 @section('content')
 
+<div class="float-end">
+    <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+</div>
+
 <div class="row justify-content-center">
     <div class="col-md-12">
         <h4 class="text-center"></h4>

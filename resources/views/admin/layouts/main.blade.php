@@ -566,7 +566,7 @@ table tbody tr {
             <div class="side-menu">
                 <ul>
                     <li style="list-style-type:none;">
-                       <a href="" class="">
+                       <a href="{{route('dashboard.index')}}" class="">
                             <span class="las la-home"></span>
                             <small>Dashboard</small>
                         </a>
@@ -585,28 +585,28 @@ table tbody tr {
                          </a>
                      </li>
 
-                     {{-- <li style="list-style-type:none">
+                     <li style="list-style-type:none">
                         <a href="{{route('author.index')}}">
                              <span class="las la-user"></span>
                              <small>Author</small>
                          </a>
-                     </li> --}}
+                     </li>
                     <li style="list-style-type:none">
                        <a href="{{route('category.index')}}">
-                            <span class="las la-user-alt"></span>
+                            <span class="lab la-buromobelexperte"></span>
                             <small>Category</small>
                         </a>
                     </li>
 
                     <li style="list-style-type:none">
                         <a href="{{route('book.index')}}">
-                             <span class="las la-user"></span>
+                             <span class="las la-book"></span>
                              <small>Book</small>
                          </a>
                      </li>
 
 
-                    <li style="list-style-type:none">
+                    {{-- <li style="list-style-type:none">
                        <a href="">
                             <span class="las la-envelope"></span>
                             <small>Mailbox</small>
@@ -623,7 +623,7 @@ table tbody tr {
                             <span class="las la-shopping-cart"></span>
                             <small>Orders</small>
                         </a>
-                    </li>
+                    </li> --}}
                     <li style="list-style-type:none">
                        <a href="">
                             <span class="las la-tasks"></span>

@@ -1,7 +1,12 @@
 @extends('admin.layouts.main')
 @section('content')
 
-<div class="row justify-content-center">
+
+<div class="m-4 mt-4 float-end">
+    <a class="btn btn-primary" href="{{ route('author.index') }}"> Back</a>
+</div>
+
+<div class="row mt-4 justify-content-center">
     <div class="col-md-12">
         <h4 class="text-center"></h4>
         <div class="card">
@@ -70,5 +75,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection

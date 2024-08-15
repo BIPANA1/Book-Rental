@@ -45,12 +45,12 @@ class UserController extends Controller
     {
         $userRole=[];
         $user = User::find($id);
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::pluck('name', 'id')->toArray();
         // dd($roles);
         if(isset($user->roles)){
-          $userRole = $user->roles->pluck('name', 'name')->all();
+          $userRole = $user->roles->pluck('name', 'id')->toArray();
         }
-        $userRole = $user->roles->pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'id')->toArray();
         return view('admin.pages.user.edit', compact('user', 'roles','userRole'));
     }
 

@@ -5,11 +5,10 @@
 <div class="row">
     <div class="col-lg-4 margin-tb m-4 mb-4">
         <div class="pull-left">
-            <h2>Create New Role
+            <h2>Create New Role </h2>
                 <div class="float-end">
                     <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
                 </div>
-            </h2>
         </div>
     </div>
 </div>
@@ -27,14 +26,14 @@
 
 <form action="{{ route('roles.store') }}" method="POST">
     @csrf
-    <div class="row">
+    <div class="row m-4">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 m-2">
             <div class="form-group">
                 <strong>Permission:</strong>
                 <br />

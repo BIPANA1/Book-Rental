@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Book_author;
 use App\Models\Category;
 use App\Services\BookServices;
 use Illuminate\Http\Request;
@@ -31,8 +33,10 @@ class BookController extends Controller
      */
     public function create()
     {
+        $author = Author::pluck('name','id')->toArray();
+        // dd($author);
         $category = Category::pluck('name','id')->toArray();
-        return view('admin.pages.book.create', compact('category'));
+        return view('admin.pages.book.create', compact('category','author'));
     }
 
     /**
@@ -48,6 +52,7 @@ class BookController extends Controller
             'stock_count' => 'required',
             'published_date' => 'required',
             'photo' => 'required',
+            'author_id' => 'required',
             'category_id' => 'required',
         ]);
     // dd($request->all())
@@ -63,8 +68,12 @@ class BookController extends Controller
         //   dd($image_title);
 
           $data['photo'] = $image_title;
-            // dd($data);
           $book = $this->bookServices->create($data);
+
+          $book_author = new Book_author();
+          $book_author->author_id = $request->input('author_id');
+          $book_author->book_id = $book->id;
+          $book_author->save();
           return redirect()->route('book.show',['id'=>$book->id])->with('success','Book Successfully created');
 
     }
@@ -75,6 +84,7 @@ class BookController extends Controller
     public function show($id)
     {
         $book = $this->bookServices->find($id);
+        $category = Category::find($book->category_id);
         return view('admin.pages.book.show', compact('book'));
     }
 

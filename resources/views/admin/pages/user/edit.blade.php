@@ -28,7 +28,7 @@
 
     <form action="{{ route('users.update', $user->id) }}" method="PATCH">
         @csrf
-        <div class="row">
+        <div class="row m-4 mt-4">
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
                     <strong>Name:</strong>
