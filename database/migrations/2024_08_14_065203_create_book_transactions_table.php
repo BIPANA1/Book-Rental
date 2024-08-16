@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('rent_status',['rent','return'])->default('rent');
             $table->unsignedBigInteger('member_id');
             $table->foreign('member_id')->references('id')->on('members');
-            $table->enum('active_closed',['active','close'])->default('close');
+            $table->enum('active_closed',['active','close'])->default('active');
             $table->timestamps();
 
         });

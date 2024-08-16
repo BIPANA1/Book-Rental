@@ -8,9 +8,11 @@
     }
 </style>
 
-<h2> Books Management</h2>
+<div class="m-4 mt-2">
+    <h2> Books Management</h2>
+</div>
 
-<div class="m-4 mt-4">
+<div class=" float-end m-4 mt-4">
     <a href="{{route('book.create')}}" class="btn btn-primary"> Create Book</a>
 </div>
 

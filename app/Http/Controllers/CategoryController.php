@@ -68,7 +68,7 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         $category->description = $request->input('description');
         $category->update();
-        return view('admin.pages.category.index')->with('success','Successfully updated');
+        return redirect()->route('category.index')->with('success','Successfully updated');
     }
 
     /**

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Members;
+use App\Services\MemberServices;
+
+;
 use Illuminate\Http\Request;
 
 class MembersController extends Controller
@@ -10,9 +13,18 @@ class MembersController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct(
+        protected MemberServices $memberServices
+      ) {
+      }
+
+
     public function index()
     {
-        //
+        $member = $this->memberServices->all();
+        return view('admin.pages.member.index', compact('member'));
+
     }
 
     /**
@@ -20,7 +32,7 @@ class MembersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.member.create');
     }
 
     /**
@@ -28,7 +40,14 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:50', 'regex:/^[\pL\s]+$/u'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'numeric', 'digits_between:5,15'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+        $member = $this->memberServices->create($data);
+        return redirect()->route('member.index',['id' =>$member->id]);
     }
 
     /**
@@ -42,24 +61,34 @@ class MembersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Members $members)
+    public function edit($id)
     {
-        //
+        $member = $this->memberServices->find($id);
+        return view('admin.pages.member.edit',compact('member'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Members $members)
+    public function update(Request $request,$id)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:50', 'regex:/^[\pL\s]+$/u'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'numeric', 'digits_between:5,15'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+        $member = $this->memberServices->update($data,$id);
+        return redirect()->route('member.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Members $members)
+    public function destroy($id)
     {
-        //
+        $this->memberServices->delete($id);
+        return redirect()->route('member.index');
     }
 }

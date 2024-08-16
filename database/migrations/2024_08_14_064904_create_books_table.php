@@ -20,8 +20,6 @@ return new class extends Migration
             $table->integer('stock_count');
             $table->string('published_date');
             $table->string('photo');
-            $table->unsignedBigInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('authors');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

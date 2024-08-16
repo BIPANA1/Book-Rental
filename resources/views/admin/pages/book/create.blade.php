@@ -138,18 +138,6 @@
 
                     <div class="row mb-3">
                         <label for="text"
-                            class="col-md-4 col-form-label text-md-end">{{ __('Author') }}</label>
-                        <div class="col-md-8">
-                            <select name="author_id" id="author_id" class="w3-input form-control">
-                                @foreach ($author as $key=> $a)
-                                    <option value="{{ $key }}">{{ $a }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="number"
                             class="col-md-4 col-form-label text-md-end">{{ __('Category') }}</label>
                         <div class="col-md-8">
                             <select name="category_id" id="category_id" class="w3-input form-control">
@@ -159,6 +147,30 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <label for="text"
+                            class="col-md-4 col-form-label text-md-end">{{ __('Author') }}</label>
+                        <div class="col-md-8">
+                        <select name="author_id[]" id="author_id" class="w3-input form-control" multiple>
+                            @foreach ($author as $key=> $a)
+                        <option value="{{$key}}">{{$a}}</option>
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
+
+                    {{-- <div class="row mb-3">
+                        <label for="text"
+                            class="col-md-4 col-form-label text-md-end">{{ __('Author') }}</label>
+                        <div class="col-md-8">
+                            <select name="author_id" id="author_id" class="w3-input form-control">
+                                @foreach ($author as $key=> $a)
+                                    <option value="{{ $key }}">{{ $a }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div> --}}
 
 
                     <div class="row mb-0">

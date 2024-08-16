@@ -26,7 +26,7 @@
        <th>Phone</th>
        <th>Action</th>
     </tr>
-    @foreach ($author as  $auth)
+    @foreach ($authors as  $auth)
     <tr>
         <td>{{$auth->name}}</td>
         <td>{{$auth->email}}</td>

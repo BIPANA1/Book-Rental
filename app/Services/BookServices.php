@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\BookRepositoryInterface;
-use App\Repositories\UserRepositoryInterface;
 
 class BookServices
 {

@@ -8,7 +8,10 @@
     }
 </style>
 
+<div class="m-4 mt-4">
 <h2> Books Details</h2>
+</div>
+
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
@@ -19,6 +22,7 @@
 <table class="table">
     <tr>
        <th>Name</th>
+       <th>Author</th>
        <th>No. of Page</th>
        <th>isbn</th>
        <th>Rating</th>
@@ -29,6 +33,11 @@
     </tr>
     <tr>
         <td>{{$book->name}}</td>
+        <td>
+        @foreach ($authors as $author)
+            {{ $author->name }} <br>
+        @endforeach
+        </td>
         <td>{{$book->no_of_pages}}</td>
         <td>{{$book->isbn}}</td>
         <td>{{$book->rating}}</td>

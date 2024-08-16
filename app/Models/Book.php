@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable=['name','no_of_pages','isbn','rating','stock_count','published_date','photo','author_id','category_id'];
+
+    protected $table = 'books';
+    protected $fillable=['name','no_of_pages','isbn','rating','stock_count','published_date','photo','category_id'];
 
     // public function Category()
     // {
@@ -19,10 +21,9 @@ class Book extends Model
     return $this->belongsTo(Category::class);
 }
 
-
-    public function Author()
+    public function authors()
     {
-        return $this->belongsTo(Author::class,'author');
+        return $this->belongsToMany(Author::class,'book_authors');
     }
 
 }

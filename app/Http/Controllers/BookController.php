@@ -20,17 +20,12 @@ class BookController extends Controller
       ) {
       }
 
-
-
     public function index()
     {
         $book = Book::all();
         return view('admin.pages.book.index', compact('book'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $author = Author::pluck('name','id')->toArray();
@@ -39,23 +34,21 @@ class BookController extends Controller
         return view('admin.pages.book.create', compact('category','author'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // dd($request->author_id);
         $data = $request->validate([
             'name' => 'required|string|max:50',
-            'no_of_pages' => 'required',
-            'isbn' => 'required',
-            'rating' => 'required',
-            'stock_count' => 'required',
-            'published_date' => 'required',
-            'photo' => 'required',
-            'author_id' => 'required',
-            'category_id' => 'required',
+            'no_of_pages' => 'required|integer|min:1',
+            'isbn' => 'required|integer|min:0|unique:books,isbn',
+            'rating' => 'required|integer|min:0|max:5',
+            'stock_count' => 'required|integer|min:0',
+            'published_date' => 'required|date',
+            'photo' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'author_id' => 'required|array|exists:authors,id',
+            'author_id.*' => 'integer|distinct',
+            'category_id' => 'required|exists:categories,id',
         ]);
-    // dd($request->all())
 
           $image_title = null;
           if ($request->hasFile('photo')) {
@@ -65,32 +58,22 @@ class BookController extends Controller
               $img->move($imgpath, $imgname);
               $image_title = $imgpath . $imgname;
           }
-        //   dd($image_title);
 
           $data['photo'] = $image_title;
           $book = $this->bookServices->create($data);
 
-          $book_author = new Book_author();
-          $book_author->author_id = $request->input('author_id');
-          $book_author->book_id = $book->id;
-          $book_author->save();
-          return redirect()->route('book.show',['id'=>$book->id])->with('success','Book Successfully created');
-
+          $book->authors()->sync($request->input('author_id'));
+           return redirect()->route('book.show', ['id' => $book->id])->with('success', 'Book Successfully created');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $book = $this->bookServices->find($id);
         $category = Category::find($book->category_id);
-        return view('admin.pages.book.show', compact('book'));
+        $authors = $book->authors;
+        return view('admin.pages.book.show', compact('book','category','authors'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $book = $this->bookServices->find($id);
@@ -98,9 +81,7 @@ class BookController extends Controller
         return view('admin.pages.book.edit',compact('book','category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, $id)
     {
         $data = $request->validate([
@@ -128,9 +109,6 @@ class BookController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $this->bookServices->delete($id);

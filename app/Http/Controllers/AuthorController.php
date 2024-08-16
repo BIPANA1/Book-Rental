@@ -14,8 +14,8 @@ class AuthorController extends Controller
     public function index()
     {
 
-        $author = Author::all();
-        return view('admin.pages.author.index',compact('author'));
+        $authors = Author::all();
+        return view('admin.pages.author.index',compact('authors'));
     }
 
     /**
@@ -33,16 +33,16 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:50',
-            'email' => 'required',
-            'phone' => 'required',
+            'name' => ['required', 'string', 'max:50', 'regex:/^[\pL\s]+$/u'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'numeric', 'digits_between:5,15'],
         ]);
         $author = new Author();
         $author->name  = $request->input('name');
         $author->email = $request->input('email');
         $author->phone = $request->input('phone');
         $author->save();
-        return view('admin.pages.author.index')->with('sucess','Author successfully created!');
+        return redirect()->route('author.index')->with('sucess','Author successfully created!');
     }
 
     /**
@@ -68,13 +68,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request,$id)
     {
-
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:50', 'regex:/^[\pL\s]+$/u'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'numeric', 'digits_between:5,15'],
+        ]);
         $author = Author::find($id);
         $author->name  = $request->input('name');
         $author->email = $request->input('email');
         $author->phone = $request->input('phone');
         $author->update();
-        return view('admin.pages.author.index')->with('success','Successfully updated');
+        return redirect()->route('author.index')->with('success','Successfully updated');
 
     }
 

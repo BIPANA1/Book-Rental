@@ -5,6 +5,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\RentController;
+use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.dashboard');
 });
 
 Auth::routes();
@@ -64,12 +66,25 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Members
     Route::get('admin/member',[MembersController::class,'index'])->name('member.index');
-    Route::get('admin/member/create',[BookController::class,'create'])->name('member.create');
-    Route::post('admin/member/',[BookController::class,'store'])->name('member.store');
-    Route::get('admin/member/edit/{id}',[BookController::class,'edit'])->name('member.edit');
-    Route::post('admin/member/update/{id}',[BookController::class,'update'])->name('member.update');
-    Route::get('admin/member/show/{id}',[BookController::class,'show'])->name('member.show');
-    Route::delete('admin/member/destroy/{id}',[BookController::class,'destroy'])->name('member.destroy');
+    Route::get('admin/member/create',[MembersController::class,'create'])->name('member.create');
+    Route::post('admin/member/',[MembersController::class,'store'])->name('member.store');
+    Route::get('admin/member/edit/{id}',[MembersController::class,'edit'])->name('member.edit');
+    Route::post('admin/member/update/{id}',[MembersController::class,'update'])->name('member.update');
+    Route::get('admin/member/show/{id}',[MembersController::class,'show'])->name('member.show');
+    Route::delete('admin/member/destroy/{id}',[MembersController::class,'destroy'])->name('member.destroy');
+
+    //Rent a book
+    Route::get('/admin/transaction/rent',[RentController::class,'index'])->name('rent.index');
+    Route::get('/admin/transaction/rent/create',[RentController::class,'create'])->name('rent.create');
+    Route::post('/admin/transaction/rent',[RentController::class,'store'])->name('rent.store');
+
+
+    //Return a book
+    Route::get('/admin/transaction/return',[ReturnController::class,'index'])->name('return.index');
+    Route::get('admin/transaction/return/create',[ReturnController::class,'create'])->name('return.create');
+
+
+
 
 
 });
