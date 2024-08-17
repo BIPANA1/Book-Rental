@@ -33,7 +33,7 @@
 
     <tr>
         <td>{{$r->id}}</td>
-        <td>{{$r->name}}</td>
+        <td>{{$r->book->name}}</td>
         <td>{{$r->code}}</td>
         <td>
             <div style="display: flex; gap: 5px; margin-top:8px;">

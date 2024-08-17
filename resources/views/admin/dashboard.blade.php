@@ -8,11 +8,11 @@
 
         <div class="card">
             <div class="card-head">
-                <h2>107,200</h2>
+                <h2>{{$memberCount}}</h2>
                 <span class="las la-user-friends"></span>
             </div>
             <div class="card-progress">
-                <small>User activity this month</small>
+                <small>Members</small>
                 <div class="card-indicator">
                     <div class="indicator one" style="width: 60%"></div>
                 </div>
@@ -21,11 +21,11 @@
 
         <div class="card">
             <div class="card-head">
-                <h2>340,230</h2>
-                <span class="las la-eye"></span>
+                <h2>{{$bookCount}}</h2>
+                <span class="las la-book"></span>
             </div>
             <div class="card-progress">
-                <small>Page views</small>
+                <small>Total Books</small>
                 <div class="card-indicator">
                     <div class="indicator two" style="width: 80%"></div>
                 </div>
@@ -34,11 +34,11 @@
 
         <div class="card">
             <div class="card-head">
-                <h2>$653,200</h2>
+                <h2>{{$bookRent}}</h2>
                 <span class="las la-shopping-cart"></span>
             </div>
             <div class="card-progress">
-                <small>Monthly revenue growth</small>
+                <small>Book Rent</small>
                 <div class="card-indicator">
                     <div class="indicator three" style="width: 65%"></div>
                 </div>

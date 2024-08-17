@@ -11,9 +11,9 @@ class RentController extends Controller
 {
     public function index()
     {
-        $rent = Book_transaction::all();
-        $member = Members::pluck('name','id')->toArray();
-        return view('admin.pages.Transaction.Rent.index',  compact('rent','member'));
+        $rent = Book_transaction::with('book')->get();
+        $books = Book::pluck('name','id')->toArray();
+        return view('admin.pages.Transaction.Rent.index',  compact('rent','books'));
 
     }
 
@@ -40,11 +40,9 @@ class RentController extends Controller
     $book = Book::findOrFail($request->input('book_id'));
 
     if ($book->stock_count > 0) {
-        // Decrease the stock count
         $book->stock_count -= 1;
         $book->save();
 
-        // Create a new rent transaction
         $rent = new Book_transaction();
         $rent->book_id = $request->input('book_id');
         $rent->member_id = $request->input('member_id');
@@ -57,7 +55,6 @@ class RentController extends Controller
         if ($rent->save()) {
             return redirect()->route('rent.index')->with('success', 'Successfully created');
         } else {
-            // If saving the rent fails, revert the stock count
             $book->stock_count += 1;
             $book->save();
 

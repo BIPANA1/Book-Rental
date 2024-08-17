@@ -12,14 +12,14 @@ class Book_transaction extends Model
     protected $table = 'book_transactions';
 protected $fillable=['book_id','code','from_date','to_date','rent_status','member_id','active_closed'];
 
-public function Members()
+public function members()
 {
-    return $this->hasMany(Members::class,'members');
+    return $this->belongsTo(Members::class,'member_id');
 
 }
 
-public function Book()
+public function book()
 {
-    return $this->hasMany(Book::class,'book');
+    return $this->belongsTo(Book::class,'book_id');
 }
 }

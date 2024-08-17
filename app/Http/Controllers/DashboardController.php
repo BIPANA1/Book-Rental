@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Members;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $memberCount = DB::table('members')->count();
+        $bookCount = DB::table('books')->count();
+        $bookRent = DB::table('book_transactions')->count();
+        return view('admin.dashboard', compact('memberCount','bookCount','bookRent'));
     }
 }

@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <h4 class="text-center"></h4>
         <div class="card">
-            <div class="card-header">{{ __('Rent A Book') }}</div>
+            <div class="card-header">{{ __('Return A Book') }}</div>
             <div class="card-body">
                 <form method="POST" action="">
                     @csrf
@@ -19,7 +19,7 @@
                         <label for="text"
                             class="col-md-4 col-form-label text-md-end">{{ __('Code') }}</label>
                         <div class="col-md-8">
-                            <select name="category_id" id="category_id" class="w3-input form-control">
+                            <select name="code" id="code" class="w3-input form-control">
                                 {{-- @foreach ($book as $key=> $c)
                                     <option value="{{ $key }}">{{ $c }}</option>
                                 @endforeach --}}
