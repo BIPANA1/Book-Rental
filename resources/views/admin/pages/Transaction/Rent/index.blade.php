@@ -14,9 +14,10 @@
 </div>
 @endif
 
-<div class="m-4 mt-2">
+<div class="text-center mt-4">
     <h2> Rent A Book </h2>
 </div>
+
 
 <div class="float-end m-2">
     <a href="{{route('rent.create')}}" class="btn btn-primary m-4"> Create </a>
@@ -33,7 +34,7 @@
 
     <tr>
         <td>{{$r->id}}</td>
-        <td>{{$r->book->name}}</td>
+        <td>{{$r->members->name}}</td>
         <td>{{$r->code}}</td>
         <td>
             <div style="display: flex; gap: 5px; margin-top:8px;">

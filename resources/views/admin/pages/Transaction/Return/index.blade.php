@@ -14,7 +14,7 @@
 </div>
 @endif
 
-<div class="m-4 mt-2">
+<div class="text-center mt-4">
     <h2> Return A Book </h2>
 </div>
 

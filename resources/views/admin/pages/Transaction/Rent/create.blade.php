@@ -1,11 +1,24 @@
 @extends('admin.layouts.main')
 @section('content')
 
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
+@if ($message = Session::get('error'))
+<div class="alert alert-danger">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
+
 <div class="float-end">
     <a class="btn btn-primary" href="{{route('rent.index')}}"> Back</a>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center"  style="margin-top:10%">
     <div class="col-md-12">
         <h4 class="text-center"></h4>
         <div class="card">
@@ -54,26 +67,12 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="date" class="col-md-4 col-form-label text-md-end">{{ __('From Date') }}</label>
+                        <label for="number_of_days" class="col-md-4 col-form-label text-md-end">{{ __('No. of days') }}</label>
                         <div class="col-md-8">
-                            <input id="from_date" type="date"
-                                class="form-control @error('from_date') is-invalid @enderror" name="from_date"
-                                value="{{ old('from_date') }}" required autocomplete="from_date" autofocus>
-                            @error('from_date')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="date" class="col-md-4 col-form-label text-md-end">{{ __('To Date') }}</label>
-                        <div class="col-md-8">
-                            <input id="to_date" type="date"
-                                class="form-control @error('to_date') is-invalid @enderror" name="to_date"
-                                value="{{ old('to_date') }}" required autocomplete="to_date" autofocus>
-                            @error('to_date')
+                            <input id="number_of_days" type="number"
+                                class="form-control @error('number_of_days') is-invalid @enderror" name="number_of_days"
+                                value="{{ old('number_of_days') }}" required autocomplete="number_of_days" autofocus>
+                            @error('number_of_days')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -85,6 +84,9 @@
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Add') }}
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                {{ __('Reset') }}
                             </button>
                         </div>
                     </div>

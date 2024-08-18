@@ -15,9 +15,13 @@
 </div>
 @endif
 
-
+<div class="text-center mt-4">
 <h2> Author </h2>
+</div>
+
+<div class="float-end m-4">
 <a href="{{route('author.create')}}" class="btn btn-primary m-4"> Create </a>
+</div>
 
 <table class="table">
     <tr>

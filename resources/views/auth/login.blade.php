@@ -280,15 +280,15 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="account-contents"
-                    style="background: url('/Images/book.png'); background-size: fit;">
+                    style="background:url('images/library.png');object-fit:cover">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        {{-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="account-thumb">
                                 <h2>Login now</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur similique
                                     deleniti pariatur enim cumque eum</p>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="account-content">
                                 <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">

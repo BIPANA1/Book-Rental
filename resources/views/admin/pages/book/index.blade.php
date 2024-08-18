@@ -8,12 +8,12 @@
     }
 </style>
 
-<div class="m-4 mt-2">
+<div class="text-center mt-4">
     <h2> Books Management</h2>
 </div>
 
 <div class=" float-end m-4 mt-4">
-    <a href="{{route('book.create')}}" class="btn btn-primary"> Create Book</a>
+    <a href="{{route('book.create')}}" class="btn btn-primary m-4"> Create Book</a>
 </div>
 
 @if ($message = Session::get('success'))

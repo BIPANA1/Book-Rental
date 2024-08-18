@@ -565,13 +565,19 @@ table tbody tr {
         <div class="side-content">
             <div class="side-menu">
                 <ul>
-                    <li style="list-style-type:none;">
+                    {{-- <li style="list-style-type:none;">
                        <a href="{{route('dashboard.index')}}" class="">
                             <span class="las la-home"></span>
                             <small>Dashboard</small>
                         </a>
-                    </li>
-                    {{-- <li style="list-style-type:none">
+                    </li> --}}
+                    <li style="list-style-type:none; font-size:1.3rem;font-weight: 500">
+                        <a href="" class="">
+                             <span class="las la-"></span>
+                             <small>Master Data</small>
+                         </a>
+                     </li>
+                    <li style="list-style-type:none">
                         <a href="{{route('users.index')}}">
                              <span class="las la-users"></span>
                              <small>Users</small>
@@ -583,7 +589,7 @@ table tbody tr {
                              <span class="las la-user-alt"></span>
                              <small>Roles</small>
                          </a>
-                     </li> --}}
+                     </li>
 
                      <li style="list-style-type:none">
                         <a href="{{route('author.index')}}">
@@ -611,15 +617,21 @@ table tbody tr {
                              <small>Members List</small>
                          </a>
                      </li>
+                     <li style="list-style-type:none; font-size:1.3rem; font-weight: 500">
+                        <a href="" class="">
+                             <span class="las la-"></span>
+                             <small>Transaction</small>
+                         </a>
+                     </li>
                      <li style="list-style-type:none">
                         <a href="{{route('rent.index')}}">
-                             <span class="lab la-buromobelexperte"></span>
+                             <span class="las la-book-open"></span>
                              <small>Rent a Book</small>
                          </a>
                      </li>
                      <li style="list-style-type:none">
                         <a href="{{route('return.index')}}">
-                             <span class="lab la-buromobelexperte"></span>
+                             <span class="las la-book"></span>
                              <small>Return a Book</small>
                          </a>
                      </li>
@@ -664,7 +676,7 @@ table tbody tr {
                 </label>
 
                 <div class="header-menu">
-                    <label for="">
+                    {{-- <label for="">
                         <span class="las la-search"></span>
                     </label>
 
@@ -676,7 +688,7 @@ table tbody tr {
                     <div class="notify-icon">
                         <span class="las la-bell"></span>
                         <span class="notify">3</span>
-                    </div>
+                    </div> --}}
 
                     <div class="user">
                         <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>

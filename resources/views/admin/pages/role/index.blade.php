@@ -7,11 +7,13 @@
        padding: 16px 36px;
     }
 </style>
+<div class="text-center mt-4">
+    <h2> Roles Management</h2>
 
-<h2> Roles Management</h2>
+</div>
 
-<div class="m-4">
-    <a href="{{route('roles.create')}}" class="btn btn-primary"> Create role</a>
+<div class=" float-end m-4">
+    <a href="{{route('roles.create')}}" class="btn btn-primary m-4"> Create role</a>
 </div>
 
 @if ($message = Session::get('success'))

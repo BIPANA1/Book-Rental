@@ -178,6 +178,9 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Add') }}
                             </button>
+                            <button type="reset" class="btn btn-secondary">
+                                {{ __('Reset') }}
+                            </button>
                         </div>
                     </div>
                 </form>

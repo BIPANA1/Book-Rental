@@ -8,8 +8,11 @@
     }
 </style>
 
-<h2>User Management</h2>
-<div>
+<div class="text-center mt-4">
+    <h2>User Management</h2>
+
+</div>
+<div class="float-end">
     <a href="{{route('users.create')}}" class="btn btn-primary m-4"> Create </a>
 
 </div>
