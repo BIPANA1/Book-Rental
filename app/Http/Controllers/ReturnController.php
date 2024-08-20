@@ -101,7 +101,7 @@ if(!$member_id){
         ->where('id',$id)
         ->where('rent_status', 'return')
         ->where('active_closed','close')
-        ->firstOrFail();
+        ->get();
         $member = Members::pluck('name','id')->toArray();
         return view('admin.pages.Transaction.Return.show', compact('return','member'));
 

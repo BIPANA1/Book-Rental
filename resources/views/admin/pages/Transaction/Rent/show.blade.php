@@ -18,12 +18,6 @@
     <h2> Rent Book Details</h2>
 </div>
 
-<div class="float-end m-4">
-    <button class="btn btn-primary">Download Excel</button>
-
-</div>
-
-
 <div class="container">
     <div class="row">
     <div class="col-12 mt-4 justify-content-center">

@@ -14,13 +14,16 @@
 </div>
 @endif
 
-
-<div class="float-end m-2">
-    <a href="{{route('rent.create')}}" class="btn btn-primary m-4"> Create </a>
+<div class="float-end m-4">
+    <button class="btn btn-primary" style="color: black;text-decoration:none"> <span class="las la-download"></span> <a href="{{route('rent.export')}}" style="color: black;text-decoration:none"> Download Excel </a> </button>
 </div>
 
+{{-- <div class="float-end m-2">
+    <a href="{{route('rent.create')}}" class="btn btn-primary m-4"> Create </a>
+</div> --}}
 
-@if ($rent->isNotEmpty())
+
+{{-- @if ($rent->isNotEmpty()) --}}
 
 <div class="container">
     <div class="row">
@@ -30,6 +33,10 @@
        <th>SN</th>
        <th>Name</th>
        <th>Code</th>
+       <th>from_date</th>
+       <th>to_date</th>
+       <th>Rent Status</th>
+       <th>Active Close</th>
        <th>Action</th>
     </tr>
     @foreach ($rent as $r )
@@ -38,9 +45,13 @@
         <td>{{$r->id}}</td>
         <td>{{$r->member->name}}</td>
         <td>{{$r->code}}</td>
+        <td>{{$r->from_date}}</td>
+        <td>{{$r->to_date}}</td>
+        <td>{{$r->rent_status}}</td>
+        <td>{{$r->active_closed}}</td>
         <td>
             <div style="display: flex; gap: 5px; margin-top:8px;">
-                <a href="{{route('rent.show',['id' => $r->id])}}" class="btn btn-success" >View</a>
+                <a href="{{route('return.show',['id' =>$r->id])}}" class="btn btn-success" >View</a>
                 <a href="{{route('rent.edit',['id'=>$r->id])}}" class="btn btn-info" >Edit</a>
             <form id="delete-form" method="POST" action="">
                 {{ csrf_field() }}
@@ -57,13 +68,13 @@
     </div>
     </div>
 </div>
-@else
+{{-- @else
 
 <div class="text-center mt-4">
     <h3>No books are currently rented out.</h3>
 
 </div>
 
-@endif
+@endif --}}
 
 @endsection

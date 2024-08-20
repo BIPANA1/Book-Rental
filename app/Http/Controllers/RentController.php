@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RentExport;
 use App\Models\Book;
 use App\Models\Book_transaction;
 use App\Models\Members;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RentController extends Controller
 {
+    public function export()
+    {
+        $filename ="rent.xlsx";
+        return Excel::download(new RentExport, $filename);
+    }
     public function index()
     {
         $rent = Book_transaction::with('member')->where('rent_status', 'rent')
@@ -151,6 +158,51 @@ class RentController extends Controller
             }
         }
     }
+
+    public function exportDataInExcel(Request $request)
+    {
+        if($request->type == 'xlsx'){
+
+            $fileExt = 'xlsx';
+            $exportFormat = \Maatwebsite\Excel\Excel::XLSX;
+        }
+        elseif($request->type == 'csv'){
+
+            $fileExt = 'csv';
+            $exportFormat = \Maatwebsite\Excel\Excel::CSV;
+        }
+        elseif($request->type == 'xls'){
+
+            $fileExt = 'xls';
+            $exportFormat = \Maatwebsite\Excel\Excel::XLS;
+        }
+        else{
+
+            $fileExt = 'xlsx';
+            $exportFormat = \Maatwebsite\Excel\Excel::XLSX;
+        }
+
+
+        $filename = "rent-".date('d-m-Y').".".$fileExt;
+        return Excel::download(new RentExport, $filename, $exportFormat);
+    }
+
+    public function example()
+    {
+        $rent = Book_transaction::with('member')->where('rent_status', 'rent')
+        ->where('active_closed','active')
+        ->get();
+        $member = Members::pluck('name','id')->toArray();
+        return view('admin.pages.Transaction.Rent.example',  compact('rent','member'));
+
+    }
+
+
+
+
+
+
+
 
     }
 

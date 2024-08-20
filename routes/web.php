@@ -80,7 +80,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/admin/transaction/rent',[RentController::class,'store'])->name('rent.store');
     Route::get('/admin/transaction/rent/show/{id}',[RentController::class,'show'])->name('rent.show');
     Route::get('/admin/transaction/rent/edit/{id}',[RentController::class,'edit'])->name('rent.edit');
-    Route::post('/admin/transsaction/rent/update/{id}',[RentController::class,'update'])->name('rent.update');
+    Route::post('/admin/transaction/rent/update/{id}',[RentController::class,'update'])->name('rent.update');
+    Route::get('/admin/transaction/rent/export', [RentController::class, 'export'])->name('rent.export');
+    Route::get('/admin/transaction/rent/excelsheet', [RentController::class, 'example'])->name('rent.example');
+
+
+
 
 
     //Return a book
