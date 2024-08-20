@@ -8,9 +8,9 @@
     }
 </style>
 
-<div class="text-center mt-4">
+{{-- <div class="text-center mt-4">
     <h2> Books Management</h2>
-</div>
+</div> --}}
 
 <div class=" float-end m-4 mt-4">
     <a href="{{route('book.create')}}" class="btn btn-primary m-4"> Create Book</a>
@@ -22,7 +22,11 @@
 </div>
 @endif
 
-<table class="table m-4">
+
+<div class="container">
+    <div class="row">
+    <div class="col-12 justify-content-center">
+    <table class="table" style="margin-top:6%;">
     <tr>
        <th>Name</th>
        <th>Photo</th>
@@ -49,9 +53,11 @@
                 </form>
             </div>
         </td>
-
     </tr>
     @endforeach
     </table>
+    </div>
+    </div>
+</div>
 
 @endsection

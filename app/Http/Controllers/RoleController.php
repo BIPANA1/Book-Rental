@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use DB;
-use Illuminate\Support\Facades\DB as FacadesDB;
 
 class RoleController extends Controller
 {
@@ -22,43 +21,59 @@ class RoleController extends Controller
 
     public function index()
     {
+        $roles = Role::with('permissions')->get();
+        $breadcrumbs = [];
+        $breadcrumbs[]  = ['name'=> 'Dashboard', 'url' => '/'];
+        $breadcrumbs[]  = ['name'=> 'Roles', 'url' => '/roles']; //route('admin.role');
 
-        $roles = Role::all();
         // dd($roles);
-        return view('admin.pages.role.index', compact('roles'));
+        // $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+        // ->where("role_has_permissions.role_id")->get();
+        // dd($roles);
+        return view('admin.pages.role.index', compact('roles', 'breadcrumbs'));
     }
 
     public function create()
     {
         $permission = Permission::get();
-        // dd($permission);
         return view('admin.pages.role.create', compact('permission'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+            'permission' => 'required|array',
         ]);
+
+        $permission = Permission::whereIn('id', $request->input('permission'))->get();
+
+        if ($permission->count() !== count($request->input('permission'))) {
+            return redirect()->back()->withErrors('Some permissions do not exist.');
+        }
+
         $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
-        return redirect()->route('roles.index')->with('success','Role created successfully');
+
+        $role->syncPermissions($permission);
+
+        return redirect()->route('roles.index')->with('success', 'Role created successfully');
     }
+
 
     public function show($id)
     {
-        $role = Role::find($id);
+        $roles = Role::find($id);
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
         ->where("role_has_permissions.role_id", $id)->get();
-        return view('admin.pages.role.show', compact('role','rolePermissions'));
+        // dd($rolePermissions);
+        return view('admin.pages.role.show', compact('roles','rolePermissions'));
 
     }
 
     public function edit($id)
     {
         $role = Role::find($id);
-        $permission = Permission::get();
+        $permission = Permission::all();
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
@@ -66,21 +81,23 @@ class RoleController extends Controller
         return view('admin.pages.role.edit',compact('role','permission','rolePermissions'));
     }
     public function update(Request $request, $id)
-    {
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'permission' => 'required',
-        // ]);
+{
+    $this->validate($request, [
+        'name' => 'required|unique:roles,name,' . $id,
+        'permission' => 'required|array',
+    ]);
 
-        $role = Role::find($id);
-        $role->name = $request->input('name');
-        $role->save();
-
-        $role->syncPermissions($request->input('permission'));
-
-        return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+    $role = Role::findOrFail($id);
+    $permissions = Permission::whereIn('id', $request->input('permission'))->get();
+    if ($permissions->count() !== count($request->input('permission'))) {
+        return redirect()->back()->withErrors('Some permissions do not exist.');
     }
+    $role->name = $request->input('name');
+    $role->save();
+    $role->syncPermissions($permissions);
+    return redirect()->route('roles.index')->with('success', 'Role updated successfully');
+}
+
 
     public function destroy($id)
     {

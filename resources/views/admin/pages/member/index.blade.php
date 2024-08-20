@@ -15,16 +15,18 @@
 </div>
 @endif
 
-<div class="text-center mt-4">
+{{-- <div class="text-center mt-4">
     <h2> Members List </h2>
-</div>
+</div> --}}
 
 <div class="float-end m-4">
 <a href="{{route('member.create')}}" class="btn btn-primary m-4"> Create </a>
 </div>
 
-
-<table class="table m-4">
+<div class="container">
+    <div class="row">
+    <div class="col-12 justify-content-center">
+    <table class="table" style="margin-top:10%;margin-left:5%">
     <tr>
        <th>Name</th>
        <th>Email</th>
@@ -53,4 +55,7 @@
     </tr>
     @endforeach
     </table>
+    </div>
+    </div>
+</div>
 @endsection

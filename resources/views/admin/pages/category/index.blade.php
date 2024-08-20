@@ -15,9 +15,9 @@
 </div>
 @endif
 
-<div class="text-center mt-4">
+{{-- <div class="text-center mt-4">
 <h2> Category </h2>
-</div>
+</div> --}}
 
 
 <div class="float-end m-4">
@@ -25,7 +25,11 @@
 
 </div>
 
-<table class="table m-4">
+
+<div class="container">
+    <div class="row">
+    <div class="col-10 justify-content-center">
+    <table class="table" style="margin-top:10%;margin-left:20%">
     <tr>
        <th>Name</th>
        <th>Description</th>
@@ -50,4 +54,7 @@
     </tr>
     @endforeach
     </table>
+    </div>
+    </div>
+</div>
 @endsection

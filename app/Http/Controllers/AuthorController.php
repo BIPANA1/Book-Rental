@@ -35,7 +35,7 @@ class AuthorController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:50', 'regex:/^[\pL\s]+$/u'],
             'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'numeric', 'digits_between:5,15'],
+            'phone' => ['required', 'numeric'],
         ]);
         $author = new Author();
         $author->name  = $request->input('name');
@@ -48,9 +48,11 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Author $author)
+    public function show($id)
     {
-        //
+        $author = Author::findOrFail($id);
+        // dd($author);
+        return view('admin.pages.author.show', compact('author'));
     }
 
     /**
@@ -71,7 +73,7 @@ class AuthorController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:50', 'regex:/^[\pL\s]+$/u'],
             'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'numeric', 'digits_between:5,15'],
+            'phone' => ['required', 'numeric'],
         ]);
         $author = Author::find($id);
         $author->name  = $request->input('name');

@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('admin/author',[AuthorController::class,'index'])->name('author.index');
     Route::get('admin/author/create',[AuthorController::class,'create'])->name('author.create');
     Route::post('admin/author',[AuthorController::class,'store'])->name('author.store');
+    Route::get('admin/author/show/{id}',[AuthorController::class,'show'])->name('author.show');
     Route::get('admin/author/edit/{id}',[AuthorController::class,'edit'])->name('author.edit');
     Route::post('admin/author/update/{id}',[AuthorController::class,'update'])->name('author.update');
     Route::delete('admin/author/destroy/{id}',[AuthorController::class,'destroy'])->name('author.destroy');
@@ -77,13 +78,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/transaction/rent',[RentController::class,'index'])->name('rent.index');
     Route::get('/admin/transaction/rent/create',[RentController::class,'create'])->name('rent.create');
     Route::post('/admin/transaction/rent',[RentController::class,'store'])->name('rent.store');
+    Route::get('/admin/transaction/rent/show/{id}',[RentController::class,'show'])->name('rent.show');
+    Route::get('/admin/transaction/rent/edit/{id}',[RentController::class,'edit'])->name('rent.edit');
+    Route::post('/admin/transsaction/rent/update/{id}',[RentController::class,'update'])->name('rent.update');
 
 
     //Return a book
     Route::get('/admin/transaction/return',[ReturnController::class,'index'])->name('return.index');
-    Route::get('admin/transaction/return/create',[ReturnController::class,'create'])->name('return.create');
-
-
+    Route::get('/admin/transaction/return/create',[ReturnController::class,'create'])->name('return.create');
+    // Route::get('/admin/transaction/return/edit/{id}',[ReturnController::class,'edit'])->name('return.edit');
+    // Route::get('/transactions/{id}', [ReturnController::class, 'getTransactionDetails'])->name('transaction.details');
+    Route::post('/transactions/update/{id}', [ReturnController::class, 'update'])->name('return.update');
+    Route::get('/admin/transaction/show/{id}',[ReturnController::class,'show'])->name('return.show');
+    Route::get('/admin/transaction/search',[ReturnController::class,'search'])->name('return.search');
 
 
 

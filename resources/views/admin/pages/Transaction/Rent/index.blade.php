@@ -14,16 +14,18 @@
 </div>
 @endif
 
-<div class="text-center mt-4">
-    <h2> Rent A Book </h2>
-</div>
-
 
 <div class="float-end m-2">
     <a href="{{route('rent.create')}}" class="btn btn-primary m-4"> Create </a>
 </div>
 
-<table class="table m-4">
+
+@if ($rent->isNotEmpty())
+
+<div class="container">
+    <div class="row">
+    <div class="col-12 justify-content-center">
+    <table class="table" style="margin-top:10%;margin-left:5%">
     <tr>
        <th>SN</th>
        <th>Name</th>
@@ -34,11 +36,12 @@
 
     <tr>
         <td>{{$r->id}}</td>
-        <td>{{$r->members->name}}</td>
+        <td>{{$r->member->name}}</td>
         <td>{{$r->code}}</td>
         <td>
             <div style="display: flex; gap: 5px; margin-top:8px;">
-                <a href="" class="btn btn-info" >Edit</a>
+                <a href="{{route('rent.show',['id' => $r->id])}}" class="btn btn-success" >View</a>
+                <a href="{{route('rent.edit',['id'=>$r->id])}}" class="btn btn-info" >Edit</a>
             <form id="delete-form" method="POST" action="">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
@@ -50,11 +53,17 @@
         </td>
     </tr>
     @endforeach
+</table>
+    </div>
+    </div>
+</div>
+@else
 
-    </table>
+<div class="text-center mt-4">
+    <h3>No books are currently rented out.</h3>
 
+</div>
 
-
-
+@endif
 
 @endsection

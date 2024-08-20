@@ -44,7 +44,7 @@
                     <br />
                     @foreach ($permission as $value)
                         <label>
-                            <input type="checkbox" name="permissions[]" value="{{ $value->id }}" class="name"
+                            <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="name"
                                 @if (in_array($value->id, $rolePermissions)) checked @endif>
                             {{ $value->name }}
                         </label>

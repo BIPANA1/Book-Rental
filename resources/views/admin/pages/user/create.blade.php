@@ -46,8 +46,7 @@
                         </div>
                     </div>
 
-
-                    <div class="row mb-3">
+                    {{-- <div class="row mb-3">
                         <label for="number"
                             class="col-md-4 col-form-label text-md-end">{{ __('Roles') }}</label>
                         <div class="col-md-8">
@@ -58,7 +57,32 @@
                             </select>
                         </div>
 
+                    </div> --}}
+                    <div class="row mb-3">
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Roles') }}</label>
+                        <div class="col-md-8">
+                            @foreach ($roles as $key=> $value)
+                            <label>
+                                <input type="checkbox" name="roles[]" value="{{ $key}}" class="name">
+                                {{ $value }}</label>
+                            <br />
+                        @endforeach
+                        </div>
                     </div>
+
+
+                    {{-- <div class="col-xs-12 col-sm-12 col-md-12 m-2">
+                        <div class="form-group">
+                            <strong>Permission:</strong>
+                            <br />
+                            @foreach ($permission as $value)
+                                <label>
+                                    <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="name">
+                                    {{ $value->name }}</label>
+                                <br />
+                            @endforeach
+                        </div>
+                    </div> --}}
 
                     <div class="row mb-3">
                         <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

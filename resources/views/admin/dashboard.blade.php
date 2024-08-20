@@ -8,7 +8,7 @@
 
         <div class="card">
             <div class="card-head">
-                <h2>{{$memberCount}}</h2>
+                {{-- <h2>{{$memberCount}}</h2> --}}
                 <span class="las la-user-friends"></span>
             </div>
             <div class="card-progress">
@@ -21,7 +21,7 @@
 
         <div class="card">
             <div class="card-head">
-                <h2>{{$bookCount}}</h2>
+                {{-- <h2>{{$bookCount}}</h2> --}}
                 <span class="las la-book"></span>
             </div>
             <div class="card-progress">
@@ -34,7 +34,7 @@
 
         <div class="card">
             <div class="card-head">
-                <h2>{{$bookRent}}</h2>
+                {{-- <h2>{{$bookRent}}</h2> --}}
                 <span class="las la-shopping-cart"></span>
             </div>
             <div class="card-progress">

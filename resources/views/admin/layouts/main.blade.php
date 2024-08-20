@@ -656,12 +656,12 @@ table tbody tr {
                             <small>Orders</small>
                         </a>
                     </li> --}}
-                    <li style="list-style-type:none">
+                    {{-- <li style="list-style-type:none">
                        <a href="">
                             <span class="las la-tasks"></span>
                             <small>Tasks</small>
                         </a>
-                    </li>
+                    </li> --}}
 
                 </ul>
             </div>
@@ -713,11 +713,18 @@ table tbody tr {
 
         <main>
 
-            {{-- <div class="page-header">
-                <h1>Dashboard</h1>
-                <small>Home / Dashboard</small>
-            </div> --}}
+{{-- <div class="page-header">
+    <div class="left">
+       <ul class="breadcrumb">
+           <li>
+               <h1>{{ Str::ucfirst(Request::segment(2)) }}</h1>
+                 <small>Admin / {{Str::ucfirst(Request::segment(2))}}</small>
+           </li>
+       </ul>
+   </div>
+   </div> --}}
 
+   @include('admin.layouts.showbreadcrumb')
     @yield('content')
 
         </main>

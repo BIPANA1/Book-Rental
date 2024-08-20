@@ -8,7 +8,7 @@
     }
 </style>
 
-<div class="m-4 mt-4">
+<div class="m-4 mt-4 text-center">
 <h2> Books Details</h2>
 </div>
 
@@ -19,7 +19,10 @@
 </div>
 @endif
 
-<table class="table">
+<div class="container">
+    <div class="row">
+    <div class="col-12 justify-content-center">
+    <table class="table" style="margin-top:6%;">
     <tr>
        <th>Name</th>
        <th>Author</th>
@@ -53,5 +56,8 @@
         <td>{{$book->published_date}}</td>
     </tr>
     </table>
+    </div>
+    </div>
+</div>
 
 @endsection
